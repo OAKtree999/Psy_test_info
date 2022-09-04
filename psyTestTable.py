@@ -26,23 +26,24 @@ def ballon():
     st.balloons()
     
 # PDF 다운로드 버튼
-def down_pdf(file_name):
-    with open(f'{file_name}.pdf',"rb") as file:
+def down_pdf(file_path, file_name):
+    with open(f'{file_path}.pdf',"rb") as file:
         st.download_button(
             label="{0} 받기".format(file_name),
             data=file,
-            file_name=f'{file_name}.pdf',
+            file_name=f'{file_path}.pdf',
             mime="application/octet-stream",
             on_click=ballon, # 클릭시 풍선 효과
         )
 
 # PDF 미리보기 및 다운로드 버튼
-def show_pdf(file_path):
+def show_pdf(file_name):
+    file_path = './PDF_file/{0}'.format(file_name)
     with open(f'{file_path}.pdf',"rb") as file:
         base64_pdf = base64.b64encode(file.read()).decode('utf-8')
     pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="600" height="890" type="application/pdf"></iframe>'
     st.markdown(pdf_display, unsafe_allow_html=True)
-    down_pdf(file_path)
+    down_pdf(file_path, file_name)
 
 # 선택한 심리검사 리스트, 미리보기, 다운로드 버튼
 def selected_list():
@@ -55,7 +56,7 @@ def selected_list():
             show_pdf(i) 
         except:
             st.error('{0} 심리검사의 PDF파일은 없습니다.'.format(i))
-
+            
 # 엑셀 파일 불러오기
 data = excel_load('psyTable.xlsx')
 
@@ -88,3 +89,4 @@ try:
     st.info('타오른다 제작 😃')
 except:
     st.info("테이블에서 '순서' 좌측에 체크박스를 선택해주세요.")
+
