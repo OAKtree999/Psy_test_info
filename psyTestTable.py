@@ -31,7 +31,7 @@ def down_pdf(file_path, file_name):
         st.download_button(
             label="{0} 받기".format(file_name),
             data=file,
-            file_name=f'{file_name}.pdf',
+            file_name=f'{file_path}.pdf',
             mime="application/octet-stream",
             on_click=ballon, # 클릭시 풍선 효과
         )
@@ -62,7 +62,7 @@ data = excel_load('psyTable.xlsx')
 
 # Grid 옵션
 gb = GridOptionsBuilder.from_dataframe(data)
-gb.configure_pagination(enabled=True, paginationAutoPageSize=False, paginationPageSize=30) # 페이지 리스트
+# gb.configure_pagination(enabled=True, paginationAutoPageSize=False, paginationPageSize=30) # 페이지 리스트
 gb.configure_side_bar() # 사이드 바 추가
 gb.configure_selection('multiple', use_checkbox=True, groupSelectsChildren="Group checkbox select children", header_checkbox=True) # 체크박스 옵션
 gridOptions = gb.build() 
@@ -75,7 +75,7 @@ grid_response = AgGrid(
     update_mode='MODEL_CHANGED',
     columns_auto_size_mode="FIT_CONTENTS",
     enable_enterprise_modules=True,
-    # height=350,
+    height=500,
 )
 
 # 테이블에서 선택된 데이터 Dataframe으로 변환
