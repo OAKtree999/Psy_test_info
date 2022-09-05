@@ -31,7 +31,7 @@ def down_pdf(file_path, file_name):
         st.download_button(
             label="{0} 받기".format(file_name),
             data=file,
-            file_name=f'{file_path}.pdf',
+            file_name=f'{file_name}.pdf',
             mime="application/octet-stream",
             on_click=ballon, # 클릭시 풍선 효과
         )
