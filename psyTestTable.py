@@ -41,7 +41,7 @@ def show_pdf(file_name):
     file_path = './PDF_file/{0}'.format(file_name)
     with open(f'{file_path}.pdf',"rb") as file:
         base64_pdf = base64.b64encode(file.read()).decode('utf-8')
-    pdf_display = F'<embed src="data:application/pdf;base64,{base64_pdf}" width="600" height="890" type="application/pdf"></iframe>'
+    pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="600" height="890" type="application/pdf"></iframe>'
     st.markdown(pdf_display, unsafe_allow_html=True)
     down_pdf(file_path, file_name)
 
