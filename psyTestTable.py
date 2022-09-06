@@ -13,7 +13,8 @@ st.set_page_config(
 # 제목, 부제목, 설명문구
 st.header("정신건강검진 도구 정보")
 st.warning('''정신건강검진 도구의 기준 및 다운로드를 제공하고자 제작하였습니다.
-           아래 테이블의 체크박스를 선택하시면 PDF 미리보기 및 다운로드를 할 수 있습니다. ''')
+           아래 테이블의 체크박스를 선택하시면 PDF 미리보기 및 다운로드를 할 수 있습니다. 
+           ⚠️ 모바일, 패드, 파이어폭스 환경에서만 PDF 미리보기가 가능합니다.''')
 
 # 엑셀 파일 데이터 프레임으로 변환
 @st.cache
@@ -31,7 +32,7 @@ def down_pdf(file_path, file_name):
         st.download_button(
             label="{0} 받기".format(file_name),
             data=file,
-            file_name=f'{file_name}.pdf',
+            file_name=f'{file_path}.pdf',
             mime="application/octet-stream",
             on_click=ballon, # 클릭시 풍선 효과
         )
@@ -41,7 +42,7 @@ def show_pdf(file_name):
     file_path = './PDF_file/{0}'.format(file_name)
     with open(f'{file_path}.pdf',"rb") as file:
         base64_pdf = base64.b64encode(file.read()).decode('utf-8')
-    pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="600" height="890" type="application/pdf"></iframe>'
+    pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="600" height="890" type="application/pdf"></iframe>'
     st.markdown(pdf_display, unsafe_allow_html=True)
     down_pdf(file_path, file_name)
 
@@ -89,4 +90,3 @@ try:
     st.info('타오른다 제작 😃')
 except:
     st.info("테이블에서 '순서' 좌측에 체크박스를 선택해주세요.")
-
