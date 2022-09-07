@@ -10,11 +10,46 @@ st.set_page_config(
     layout='wide',
 )
 
+
+page_bg_img = """
+<style>
+[data-testid="stAppViewContainer"] > .main {
+background-image: url("https://images.unsplash.com/photo-1518972734183-c5b490a7c637?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80");
+background-size: cover;
+
+}
+
+[data-testid="stHeader"] {
+background-color: rgba(0, 0, 0, 0);
+}
+
+[data-testid="stToolbar"] {
+right: 2rem;
+}
+
+.css-1adrfps {
+background-color: rgba(0, 0, 0, 0);
+}
+
+[data-testid="stSidebar"] {
+background-image: url("https://images.unsplash.com/photo-1487260211189-670c54da558d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80");
+background-position: center;
+
+}
+
+</style>
+
+"""
+st.markdown(page_bg_img, unsafe_allow_html=True)
+
+st.sidebar.header("사이드바 준비중")
+
+
 # 제목, 부제목, 설명문구
 st.header("정신건강검진 도구 정보")
-st.warning('''정신건강검진 도구의 기준 및 다운로드를 제공하고자 제작하였습니다.
-           아래 테이블의 체크박스를 선택하시면 PDF 미리보기 및 다운로드를 할 수 있습니다. \n
-           ⚠️ 모바일, 패드, 파이어폭스 환경에서만 PDF 미리보기가 가능합니다.''')
+st.markdown("""정신건강검진 도구의 기준 및 다운로드를 제공하고자 제작하였습니다.
+            아래 테이블의 체크박스를 선택하시면 PDF 미리보기 및 다운로드를 할 수 있습니다.""")
+st.warning("⚠️ 모바일, 패드, 파이어폭스 환경에서만 PDF 미리보기가 가능합니다.")
 
 # 엑셀 파일 데이터 프레임으로 변환
 @st.cache
